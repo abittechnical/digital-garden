@@ -6,11 +6,11 @@ export const get: APIRoute = async ({ params }) => ({
   body: await generateOgImage(params.ogImage),
 })
 
-const postImportResult = await getCollection('articles', ({ data }) => !data.draft)
-const posts = Object.values(postImportResult)
+const articleImportData = await getCollection('articles', ({ data }) => !data.draft)
+const articles = Object.values(articleImportData)
 
 export function getStaticPaths() {
-  return posts
+  return articles
     .filter(({ data }) => !data.cover)
     .map(({ data }) => ({
       params: { ogImage: data.title },

@@ -28,7 +28,7 @@ export const createCustomVariableFromScale = (prefix: string, name: string, scal
 export const createCustomVariable = (prefix: string, name: string, value: string | number) => {}
 export const getPluginOptions = (partialOptions: Partial<BitTailwindPluginOptions> = {}) => ({
   prefix: partialOptions.prefix ?? 'bw',
-  neutral: partialOptions.neutral ?? 'sage',
+  neutral: partialOptions.neutral ?? 'olive',
   accent: partialOptions.accent ?? 'lime',
   radius: partialOptions.radius ?? 'lg',
   scaling: partialOptions.scaling ?? 1,

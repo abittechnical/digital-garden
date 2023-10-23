@@ -5,5 +5,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [themePlugin({ radius: 'lg', neutral: 'olive' }), require('@tailwindcss/typography')],
+  plugins: [themePlugin({ }), require('@tailwindcss/typography')],
 }
