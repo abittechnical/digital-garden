@@ -1,6 +1,6 @@
 import plugin from "tailwindcss/plugin";
 
-export type CreightivePluginOptions = {
+export type BitTailwindPluginOptions = {
   prefix: string
   scaling: number
   neutral: 'slate' | 'gray' | 'mauve' | 'sage' | 'olive' | 'sand'
@@ -8,7 +8,7 @@ export type CreightivePluginOptions = {
   radius: 'none' | 'sm' | 'md' | 'lg' | 'full'
 }
 
-type PluginWithOptions = typeof plugin.withOptions<Partial<CreightivePluginOptions>>;
+type PluginWithOptions = typeof plugin.withOptions<Partial<BitTailwindPluginOptions>>;
 
 export type HandlerParamType = Parameters<PluginWithOptions>[0];
 export type ThemeParamType = Parameters<PluginWithOptions>[1];
@@ -26,7 +26,7 @@ export const createCustomVariableFromScale = (prefix: string, name: string, scal
 }
 
 export const createCustomVariable = (prefix: string, name: string, value: string | number) => {}
-export const getPluginOptions = (partialOptions: Partial<CreightivePluginOptions> = {}) => ({
+export const getPluginOptions = (partialOptions: Partial<BitTailwindPluginOptions> = {}) => ({
   prefix: partialOptions.prefix ?? 'bw',
   neutral: partialOptions.neutral ?? 'sage',
   accent: partialOptions.accent ?? 'lime',

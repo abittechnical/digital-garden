@@ -1,4 +1,4 @@
-import { SITECONFIG } from '@/config'
+import { SITECONFIG } from './src/config.ts'
 import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'

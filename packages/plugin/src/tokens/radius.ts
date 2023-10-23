@@ -1,4 +1,4 @@
-import {CreightivePluginOptions} from "../utils";
+import {BitTailwindPluginOptions} from "../utils";
 
 export const getRadiusVariables = (prefix: string, scaling: number, radius: 'none' | 'sm' | 'md' | 'lg' | 'full') => {
   let factor = '0'

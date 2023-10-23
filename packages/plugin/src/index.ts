@@ -4,7 +4,7 @@ import { getRadixColorScales, getRadixPaletteObject } from "./tokens/colors";
 import { getRadiusVariables } from "./tokens/radius";
 import {
   createCustomVariableFromScale,
-  CreightivePluginOptions,
+  BitTailwindPluginOptions,
   getPluginOptions,
   HandlerParamType,
   ThemeParamType
@@ -236,5 +236,5 @@ const theme: ThemeParamType = (options) => {
     },
   }
 };
-export const creightivePlugin = plugin.withOptions<CreightivePluginOptions>(handler, theme);
+export const creightivePlugin = plugin.withOptions<Partial<BitTailwindPluginOptions>>(handler, theme);
 export default creightivePlugin

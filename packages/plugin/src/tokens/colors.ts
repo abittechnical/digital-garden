@@ -44,7 +44,7 @@ const radixColorScales = {
   lime: [lime, limeDark, limeA, limeDarkA],
   crimson: [crimson, crimsonDark, crimsonA, crimsonDarkA],
 }
-export const getRadixColorScales = scale => {
+export const getRadixColorScales = (scale: keyof typeof radixColorScales) => {
   return radixColorScales[scale]
 }
 export const getRadixPaletteObject = (prefix: string, palette: 'neutral' | 'accent') => ({

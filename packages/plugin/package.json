@@ -5,6 +5,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint .",
     "format:check": "prettier . --check --plugin-search-dir=. \"./**/*.{ts,js,cjs,json}\""
   },
