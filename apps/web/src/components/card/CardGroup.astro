@@ -1,0 +1,12 @@
+---
+import SectionContainer from '../../layouts/SectionContainer.astro'
+import { cn } from '../../utils/index.ts'
+
+const { class: className } = Astro.props
+---
+
+<SectionContainer className="card-group">
+  <div class={cn('card-group--container', className)}>
+    <slot />
+  </div>
+</SectionContainer>

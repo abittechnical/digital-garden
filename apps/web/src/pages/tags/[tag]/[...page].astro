@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content'
+
+import { SITECONFIG } from '../../../config.ts'
+import PaginatedArticlesLayout from '../../../layouts/PaginatedArticlesLayout.astro'
+import { getArticlesByTag } from '../../../utils/getArticlesByTag.ts'
+import { getSortedTags } from '../../../utils/getSortedTags.ts'
+
+export async function getStaticPaths({ paginate }) {
+  const articles = await getCollection('articles')
+  const tags = getSortedTags(articles)
+  return tags.flatMap(tag => {
+    const tagArticles = getArticlesByTag(articles, tag)
+    return paginate(tagArticles, {
+      params: { tag },
+      pageSize: SITECONFIG.postPerPage,
+    })
+  })
+}
+
+const { page } = Astro.props
+const { tag } = Astro.params
+const articles = page.data
+---
+
+<PaginatedArticlesLayout
+  title={`Articles tagged: ${tag}`}
+  articles={articles}
+  currentPage={page.currentPage}
+  prevPageUrl={page.url.prev}
+  nextPageUrl={page.url.next}
+/>

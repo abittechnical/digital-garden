@@ -1,0 +1,18 @@
+---
+import { cn } from '../utils/index.ts'
+
+const { class: className } = Astro.props
+---
+
+<div
+  class={cn(
+    'w-auto items-center rounded-full',
+    'border bg-white dark:bg-neutral-5 px-1',
+    'py-0.5 font-medium text-muted inline-flex text-xs',
+    className
+  )}
+>
+  <div class="px-2">
+    <slot />
+  </div>
+</div>

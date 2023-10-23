@@ -1,0 +1,17 @@
+---
+import { Icon } from 'astro-icon'
+---
+
+<a data-article-back-button class="cursor-pointer text-neutral-500 flex no-underline mb-16">
+  <Icon name="ph:arrow-left-light" class="w-6 h-6 mr-4" />
+   Back
+</a>
+
+<script>
+  const backLink = document.querySelector('[data-article-back-button]')
+  let previousUrl = '/'
+  if (document.referrer) {
+    previousUrl = document.referrer
+  }
+  backLink.setAttribute('href', previousUrl)
+</script>

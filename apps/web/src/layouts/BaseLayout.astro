@@ -1,0 +1,79 @@
+---
+import '../styles/base.fonts.css'
+
+import { Icon } from 'astro-icon'
+
+import ColorModeScript from '../components/shared/ColorModeScript.astro'
+import SEO from '../components/shared/SEO.astro'
+import { SOCIALS } from '../config.ts'
+import { cn } from '../utils/index.ts'
+import SectionContainer from './SectionContainer.astro'
+
+const currentYear = new Date().getFullYear()
+
+const { class: className, title, description, keywords, url, image } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEO title={title} description={description} keywords={keywords} url={url} image={image} />
+    <ColorModeScript />
+  </head>
+  <body class="flex flex-col">
+    <main class={cn('grow', className)}>
+      <slot />
+    </main>
+    <SectionContainer class="mt-32">
+      <footer class="py-40 bg-neutral-2">
+        <div class="wrap-sm mx-auto px-8 grid gap-16">
+          <h2
+            class="font-title font-medium text-4xl md:text-6xl lg:text-7xl leading-10 lg:leading-[70px] tracking-tight lg:tracking-tighter"
+          >
+            Let&apos;s build{' '}
+            <span class="text-accent-10 inline font-bold underline-offset-4 underline">
+              the amazing
+            </span>{' '}
+             together
+          </h2>
+          <div class="footer-credits text-muted">
+            <a
+              class="block text-3xl md:text-5xl lg:text-4xl font-medium mb-2 md:mb-8 lg:mb-4 leading-10 tracking-tighter relative hover:underline hover:-top-0.5 hover:text-accent-11 hover:text-black focus-visible:p-1"
+              href="mailto:hey@avenuelabs.co"
+            >
+              bit@creightive.co
+            </a>
+            <div
+              class="footer-socials font-medium flex gap-6 md:gap-10 max-w-md text-xl md:text-3xl lg:text-2xl leading-10 tracking-tighter"
+            >
+              {
+                SOCIALS.filter(social => social.active).map(social => (
+                  <a
+                    href={social.href}
+                    class="relative hover:underline hover:-top-0.5 hover:text-skin-accent hover:text-black focus-visible:p-1 flex items-center"
+                    target="_blank"
+                    title={social.title}
+                  >
+                    <Icon name={social.icon} class="w-10 h-10 inline" />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+          <div class="text-muted text-md flex flex-wrap gap-4 md:gap-0 md:justify-between">
+            <nav>
+              <ul class="flex items-center gap-x-3">
+                <li><a href="/articles/all">Articles</a></li>
+                <li><a href="/tags">Tags</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+            </nav>
+            <a class="" href="https://www.avenuelabs.co/">
+              Made by Avenue Labs - Christian Luntok
+            </a>
+          </div>
+        </div>
+      </footer>
+    </SectionContainer>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+---
+import { cn } from '../utils/index.ts'
+
+const { class: className } = Astro.props
+---
+
+<section class={cn(className)}><slot /></section>

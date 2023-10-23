@@ -1,0 +1,154 @@
+---
+// images
+import { Icon } from 'astro-icon'
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+
+import articooleImage from '../assets/icons/articoole-icon.png'
+import avenueAltImage from '../assets/icons/avenue-icon-alt.png'
+import avenueImage from '../assets/icons/avenue-icon.png'
+import pathwayImage from '../assets/icons/pathway-icon.png'
+import profileImage from '../assets/images/brandmark.png'
+import Badge from '../components/Badge.astro'
+import Card from '../components/card/Card.astro'
+import CardBody from '../components/card/CardBody.astro'
+import CardGroup from '../components/card/CardGroup.astro'
+import CardHeader from '../components/card/CardHeader.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SectionContainer from '../layouts/SectionContainer.astro'
+import { getSortedTags } from '../utils/getSortedTags.ts'
+
+const articles = await getCollection('articles')
+const projects = await getCollection('projects')
+
+const images = {
+  articooleImage,
+  avenueImage,
+  avenueAltImage,
+  pathwayImage,
+}
+const tags = getSortedTags(articles).slice(0, 6)
+const sortedArticles = articles
+  .filter(article => article.data.featured == true)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5)
+---
+
+<BaseLayout
+  title="Home | A Bit Technical"
+  description="Astro Lane is a customizable blog theme that offers minimal styling, making it easy for you to tailor it to your needs. It's a personal portfolio landing template for developers and designers. Made by Avenue Labs"
+>
+  <div class="main-wrapper wrap-sm grid gap-16 px-8 md:gap-24 lg:gap-32 mx-auto">
+    <!-- Header/Hero Section -->
+    <SectionContainer class="hero--container flex flex-col gap-8 mt-32">
+      <Image
+        src={profileImage}
+        alt={'Lane - Avenue Labs'}
+        width={160}
+        height={160}
+        aspectRatio={1 / 1}
+        format={'webp'}
+        class="rounded-full h-32 w-32 bg-neutral-2 object-cover p-4"
+      />
+      <div class="content-container">
+        <div class="max-w-[54rem] mb-8 lg:mb-4">
+          <h1
+            class="font-title tracking-tight text-3xl lg:text-4xl font-semibold leading-8 lg:leading-10 mb-0"
+          >
+            I&apos;m Bit - and this is A Bit Technical
+          </h1>
+        </div>
+        <div>
+          <div class="text-muted text-3xl md:text-3xl leading-8 lg:leading-10">
+            In the eternal words of Rene Descartes, divide each difficulty into as many parts as is
+            feasible and necessary to resolve it.
+          </div>
+        </div>
+      </div>
+    </SectionContainer>
+    <!--  Projects Container -->
+    <SectionContainer>
+      <h2 class="font-title font-medium text-h4 text-muted my-4 leading-8 tracking-tighter">
+        Projects
+      </h2>
+      <CardGroup class="grid scroll-m-24 gap-5 grid-cols-1 md:grid-cols-2 w-full">
+        {
+          projects.map(project => (
+            <Card className="col-span-1" link={project.data.link} target="_blank">
+              <CardBody>
+                <div class="card-content absolute bottom-8 left-6 right-6">
+                  <CardHeader class="">{project.data.title}</CardHeader>
+                  <div>
+                    <div>hi</div>
+                  </div>
+                </div>
+              </CardBody>
+            </Card>
+          ))
+        }
+      </CardGroup>
+    </SectionContainer>
+    <!--  Articles Container -->
+    <SectionContainer>
+      <div class="flex flex-row my-4 items-center text-muted">
+        <h2 class="font-medium font-title text-h4 mb-0 leading-8 tracking-tighter">Articles</h2>
+        <a href="/articles/all" class="font-medium flex no-underline ml-auto">
+          View all articles
+          <Icon name="ph:arrow-right-light" class="w-6 h-6 ml-4" />
+        </a>
+      </div>
+      <ul class="list-none space-y-5">
+        {
+          sortedArticles.map(article => (
+            <li class="flex flex-col gap-1">
+              <a
+                href={`/articles/${article.slug}`}
+                class="block w-full card-clip p-8 no-underline sm:flex-row sm:gap-8 bg-neutral-2 rounded-3xl transition-all duration-300"
+              >
+                <span class="grid flex-1 gap-1">
+                  <span class="line-clamp-1 md:inline-flex items-center">
+                    <span class="inline-block font-medium">{article.data.title}</span>
+                    <Badge class="ml-2">
+                      <FormattedDate date={article.data.pubDate} />
+                    </Badge>
+                  </span>
+                  <span class="text-muted line-clamp-2 ">{article.data.description}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </SectionContainer>
+    <!-- Tags Container -->
+    <SectionContainer>
+      <div class="flex flex-row my-4 items-center text-neutral-500">
+        <h2 class="font-title font-medium text-h4 text-neutral-500 leading-8 tracking-tighter mb-0">
+          Top Tags
+        </h2>
+
+        <a href="/tags" class="font-medium flex no-underline ml-auto">
+          View all tags
+          <Icon name="ph:arrow-right-light" class="w-6 h-6 ml-4" />
+        </a>
+      </div>
+
+      <ul class="list-none space-y-5">
+        {
+          tags.map(tag => (
+            <li class={`inline-block my-3 mx-1 underline-offset-8`}>
+              <a
+                href={`/tags/${tag.toLowerCase()}`}
+                class={`text-lg pr-2 flex flex-wrap items-center relative underline hover:-top-0.5 hover:text-skin-accent focus-visible:p-1`}
+              >
+                <Icon name="mdi:hashtag" class="w-6 h-6" />
+                &nbsp;<span>{tag.toLowerCase()}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </SectionContainer>
+  </div>
+</BaseLayout>

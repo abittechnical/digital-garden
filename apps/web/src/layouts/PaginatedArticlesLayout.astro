@@ -1,0 +1,84 @@
+---
+import { Icon } from 'astro-icon'
+import { CollectionEntry } from 'astro:content'
+
+import Badge from '../components/Badge.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+import { SITECONFIG } from '../config.ts'
+import { cn } from '../utils/index.ts'
+import BaseLayout from './BaseLayout.astro'
+import SectionContainer from './SectionContainer.astro'
+
+export interface Props {
+  currentPage: number
+  prevPageUrl: string | undefined
+  nextPageUrl: string | undefined
+  articles: CollectionEntry<'articles'>[]
+  title: string
+}
+
+const { nextPageUrl, prevPageUrl, currentPage, articles, title } = Astro.props
+---
+
+<BaseLayout
+  title={`Articles - ${SITECONFIG.title}`}
+  description={`A list of posts from ${SITECONFIG.author} in ${SITECONFIG.title}`}
+>
+  <div class="main-wrapper wrap-sm grid gap-16 px-8 md:gap-24 lg:gap-32 mx-auto">
+    <SectionContainer class="mt-32">
+      <a href="/apps/web/public" class="font-medium flex no-underline text-muted mb-8">
+        <Icon name="ph:arrow-left-light" class="w-6 h-6 mr-4" />
+         Back to home
+      </a>
+      <h2 class="font-title font-medium text-h4 my-4 leading-8 tracking-tighter">
+        <span class="font-medium">{title}</span>
+        <span class="ml-2 text-xl text-neutral-8">
+          (Page {currentPage})
+        </span>
+      </h2>
+
+      <ul class="list-none space-y-5">
+        {
+          articles.map(article => (
+            <li class="flex flex-col gap-1">
+              <a
+                href={`/articles/${article.slug}`}
+                class="block w-full card-clip p-8 no-underline sm:flex-row sm:gap-8 bg-neutral-2 rounded-3xl transition-all duration-300"
+              >
+                <span class="grid flex-1 gap-1">
+                  <span class="line-clamp-1 md:inline-flex items-center">
+                    <span class="inline-block font-medium">{article.data.title}</span>
+                    <Badge class="ml-2">
+                      <FormattedDate date={article.data.pubDate} />
+                    </Badge>
+                  </span>
+                  <span class="text-muted line-clamp-2 ">{article.data.description}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <nav class="flex flex-wrap mx-auto justify-center mt-8" aria-label="Pagination">
+        <!-- Previous page link -->
+        <a
+          href={prevPageUrl}
+          class={cn('mr-4 select-none flex flex-wrap', { 'text-neutral-8': !prevPageUrl })}
+          aria-label="Previous"
+        >
+          <Icon name="ph:arrow-left-light" class="w-6 h-6 mr-4" />
+           Prev
+        </a>
+        <!-- Next page link -->
+        <a
+          href={nextPageUrl}
+          class={cn('ml-4 select-none flex flex-wrap', { 'text-neutral-8': !nextPageUrl })}
+          aria-label="Next"
+        >
+          Next
+          <Icon name="ph:arrow-right-light" class="w-6 h-6 ml-4" />
+        </a>
+      </nav>
+    </SectionContainer>
+  </div>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon'
+import { CollectionEntry } from 'astro:content'
+
+import FormattedDate from '../components/FormattedDate.astro'
+import { SITECONFIG } from '../config.ts'
+import BaseLayout from './BaseLayout.astro'
+import SectionContainer from './SectionContainer.astro'
+
+export interface Props {
+  articles: CollectionEntry<'articles'>[]
+  title: string
+  tag: string
+}
+
+const { articles, title, tag } = Astro.props
+---
+
+<BaseLayout
+  title={`${title} - ${SITECONFIG.title}`}
+  description={`A list of articles from ${SITECONFIG.author} in ${SITECONFIG.title}`}
+>
+  <div class="main-wrapper wrap-sm grid gap-16 px-8 md:gap-24 lg:gap-32 mx-auto">
+    <SectionContainer class="mt-32">
+      <a href="/apps/web/public" class="font-medium flex no-underline text-muted mb-8">
+        <Icon name="ph:arrow-left-light" class="w-6 h-6 mr-4" />
+         Back to home
+      </a>
+      <h2 class="font-medium text-h4 ext-muted my-4 leading-8 tracking-tighter">
+        Tags:{tag}
+        <span class="ml-2 text-muted text-xl">(All the articles with the tag "{`${tag}`}")</span>
+      </h2>
+
+      <ul class="list-none space-y-5">
+        {
+          articles.map(article => (
+            <li class="flex flex-col gap-1">
+              <a
+                href={`/articles/${article.slug}`}
+                class="block w-full card-clip p-8 no-underline sm:flex-row sm:gap-8 bg-neutral-2 rounded-[40px] transition-all duration-300"
+              >
+                <span class="grid flex-1 gap-1">
+                  <span class="line-clamp-1 md:inline-flex items-center">
+                    <span class="inline-block font-medium">{article.data.title}</span>
+                    <span class="md:mb-0 my-2 md:my-0 md:ml-2 text-sm w-max md:w-auto items-center rounded-full border border-neutral-300 bg-white px-1 py-[2px] font-medium text-primary-500 block md:inline-flex">
+                      <span class="px-2">
+                        <FormattedDate date={article.data.pubDate} />
+                      </span>
+                    </span>
+                  </span>
+                  <span class="text-muted line-clamp-2 ">{article.data.description}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </SectionContainer>
+  </div>
+</BaseLayout>

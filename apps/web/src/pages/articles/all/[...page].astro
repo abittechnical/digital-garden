@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content'
+
+import { SITECONFIG } from '../../../config.ts'
+import PaginatedArticlesLayout from '../../../layouts/PaginatedArticlesLayout.astro'
+
+export async function getStaticPaths({ paginate }) {
+  const articles = await getCollection('articles')
+  return paginate(articles, { pageSize: SITECONFIG.postPerPage })
+}
+const { page } = Astro.props
+const articles = page.data
+---
+
+<PaginatedArticlesLayout
+  title="Articles"
+  articles={articles}
+  currentPage={page.currentPage}
+  prevPageUrl={page.url.prev}
+  nextPageUrl={page.url.next}
+/>

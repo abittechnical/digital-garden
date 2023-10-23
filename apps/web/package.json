@@ -1,0 +1,61 @@
+{
+  "name": "garden",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "astro sync",
+    "astro": "astro",
+    "cz": "cz",
+    "format": "prettier --write \"**/*.{ts,tsx,md,css,json,cjs,mjs,astro}\"",
+    "format:check": "prettier --write --plugin-search-dir=. --check .",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.0.2",
+    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^5.0.1",
+    "@resvg/resvg-js": "^2.4.1",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^3.3.2",
+    "astro-icon": "^0.8.1",
+    "remark-toc": "^9.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "satori": "^0.10.8",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "@bitwhys/tailwind-plugin": "workspace:*",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@radix-ui/colors": "3.0.0-rc.4",
+    "@typescript-eslint/parser": "^6.7.3",
+    "astro-eslint-parser": "^0.15.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-astro": "^0.29.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "prettier-plugin-tailwindcss": "^0.5.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,mdx,json}": [
+      "prettier --plugin-search-dir=. --write"
+    ]
+  }
+}

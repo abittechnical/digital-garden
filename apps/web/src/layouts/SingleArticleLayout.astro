@@ -1,0 +1,71 @@
+---
+import { Icon } from 'astro-icon'
+import type { CollectionEntry } from 'astro:content'
+
+import Badge from '../components/Badge.astro'
+import DynamicBackLink from '../components/DynamicBackLink.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+import { SITECONFIG } from '../config.ts'
+import BaseLayout from './BaseLayout.astro'
+import SectionContainer from './SectionContainer.astro'
+
+export interface Props {
+  article: CollectionEntry<'articles'>
+}
+
+const { article } = Astro.props
+
+const { title, description, pubDate, updatedDate, heroImage } = article.data
+
+const ogUrl = new URL(
+  heroImage ? heroImage : `${title.replace(/\s+/g, '-').toLowerCase()}.png`,
+  Astro.url.origin
+).href
+
+const { Content } = await article.render()
+---
+
+<BaseLayout title={`${title} - ${SITECONFIG.title}`} description={description} image={ogUrl}>
+  <SectionContainer class="wrap flex justify-center px-4 sm:gap-16 sm:px-8">
+    <div class="flex mt-32 w-full">
+      <div class="flex-1 md:pr-6 w-full">
+        <article
+          class="mx-auto prose prose-neutral prose-headings:font-medium prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg prose-h6:text-base prose-h2:scroll-mt-4 prose-h3:scroll-mt-4 prose-h4:scroll-mt-4 prose-h5:scroll-mt-4 prose-h6:scroll-mt-4 prose-headings:my-8"
+        >
+          <DynamicBackLink />
+          <div class="font-title font-semibold">
+            <h1 class="text-3xl md:text-4xl">
+              {title}
+            </h1>
+          </div>
+          <Badge class="mb-4">
+            <FormattedDate date={article.data.pubDate} />
+          </Badge>
+          {
+            updatedDate && (
+              <div class="last-updated-on">
+                Last updated on <FormattedDate date={updatedDate} />
+              </div>
+            )
+          }
+          {heroImage && <img width={720} height={360} src={heroImage} alt={title} />}
+          <div
+            class="prose-code:whitespace-pre-wrap prose-code:break-words prose-code:overflow-x-auto"
+          >
+            <Content />
+          </div>
+        </article>
+      </div>
+    </div>
+  </SectionContainer>
+</BaseLayout>
+
+<script>
+  function goBack() {
+    if (document.referrer) {
+      window.location.href = document.referrer
+    } else {
+      window.location.href = '/' // default route if there is no referrer
+    }
+  }
+</script>
