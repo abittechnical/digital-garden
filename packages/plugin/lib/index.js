@@ -751,10 +751,101 @@ var getPluginOptions = function() {
     var _partialOptions_prefix, _partialOptions_neutral, _partialOptions_accent, _partialOptions_radius, _partialOptions_scaling;
     return {
         prefix: (_partialOptions_prefix = partialOptions.prefix) !== null && _partialOptions_prefix !== void 0 ? _partialOptions_prefix : "bw",
-        neutral: (_partialOptions_neutral = partialOptions.neutral) !== null && _partialOptions_neutral !== void 0 ? _partialOptions_neutral : "sage",
+        neutral: (_partialOptions_neutral = partialOptions.neutral) !== null && _partialOptions_neutral !== void 0 ? _partialOptions_neutral : "olive",
         accent: (_partialOptions_accent = partialOptions.accent) !== null && _partialOptions_accent !== void 0 ? _partialOptions_accent : "lime",
         radius: (_partialOptions_radius = partialOptions.radius) !== null && _partialOptions_radius !== void 0 ? _partialOptions_radius : "lg",
         scaling: (_partialOptions_scaling = partialOptions.scaling) !== null && _partialOptions_scaling !== void 0 ? _partialOptions_scaling : 1
+    };
+};
+// src/tokens/typography.ts
+var typography = function(theme2) {
+    return {
+        DEFAULT: {
+            css: {
+                "--tw-prose-body": theme2("colors.neutral.11"),
+                "--tw-prose-headings": theme2("colors.neutral.12"),
+                "--tw-prose-links": theme2("colors.accent.11"),
+                // '--tw-prose-links-hover': theme('colors.teal.600'),
+                // '--tw-prose-underline': theme('colors.teal.500 / 0.2'),
+                "--tw-prose-underline-hover": theme2("colors.accent.8"),
+                "--tw-prose-bold": theme2("colors.neutral.12"),
+                "--tw-prose-counters": theme2("colors.neutral.12"),
+                "--tw-prose-bullets": theme2("colors.neutral.12"),
+                "--tw-prose-hr": theme2("colors.neutral.6"),
+                "--tw-prose-quotes": theme2("colors.neutral.10"),
+                "--tw-prose-quote-borders": theme2("colors.accent.9"),
+                // '--tw-prose-captions': theme('colors.zinc.400'),
+                "--tw-prose-code": theme2("colors.neutral.12"),
+                "--tw-prose-code-bg": theme2("colors.black"),
+                // '--tw-prose-pre-code': theme('colors.zinc.100'),
+                "--tw-prose-pre-bg": theme2("colors.black"),
+                "--tw-prose-pre-border": "transparent",
+                "--tw-prose-th-borders": theme2("colors.neutral.7"),
+                "--tw-prose-td-borders": theme2("colors.neutral.5"),
+                //
+                // '--tw-prose-invert-body': theme('colors.zinc.400'),
+                // '--tw-prose-invert-headings': theme('colors.zinc.200'),
+                // '--tw-prose-invert-links': theme('colors.teal.400'),
+                // '--tw-prose-invert-links-hover': theme('colors.teal.400'),
+                // '--tw-prose-invert-underline': theme('colors.teal.400 / 0.3'),
+                // '--tw-prose-invert-underline-hover': theme('colors.teal.400'),
+                // '--tw-prose-invert-bold': theme('colors.zinc.200'),
+                // '--tw-prose-invert-counters': theme('colors.zinc.200'),
+                // '--tw-prose-invert-bullets': theme('colors.zinc.200'),
+                // '--tw-prose-invert-hr': theme('colors.zinc.700 / 0.4'),
+                // '--tw-prose-invert-quote-borders': theme('colors.zinc.500'),
+                // '--tw-prose-invert-captions': theme('colors.zinc.500'),
+                // '--tw-prose-invert-code': theme('colors.zinc.300'),
+                // '--tw-prose-invert-code-bg': theme('colors.zinc.200 / 0.05'),
+                // '--tw-prose-invert-pre-code': theme('colors.zinc.100'),
+                // '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 0.4)',
+                // '--tw-prose-invert-pre-border': theme('colors.zinc.200 / 0.1'),
+                // '--tw-prose-invert-th-borders': theme('colors.zinc.700'),
+                // '--tw-prose-invert-td-borders': theme('colors.zinc.800'),
+                // Headings
+                // h1: {
+                //   fontSize: theme('fontSize.4xl')
+                // },h2: {
+                //   fontSize: theme('fontSize.3xl')
+                // },h3: {
+                //   fontSize: theme('fontSize.2xl')
+                // },h4: {
+                //   fontSize: theme('fontSize.xl')
+                // },h5: {
+                //   fontSize: theme('fontSize.lg')
+                // },h6: {
+                //   fontSize: theme('fontSize.base')
+                // }
+                // Code blocks
+                pre: {
+                    color: "var(--tw-prose-pre-code)",
+                    fontSize: theme2("fontSize.sm")[0],
+                    fontWeight: theme2("fontWeight.medium"),
+                    backgroundColor: "var(--tw-prose-pre-bg)",
+                    borderRadius: theme2("borderRadius.3xl"),
+                    padding: theme2("spacing.8"),
+                    overflowX: "auto",
+                    border: "1px solid",
+                    borderColor: "var(--tw-prose-pre-border)"
+                },
+                "pre code": {
+                    display: "inline",
+                    color: "inherit",
+                    fontSize: "inherit",
+                    fontWeight: "inherit",
+                    backgroundColor: "transparent",
+                    borderRadius: 0,
+                    padding: 0
+                },
+                // Blockquotes
+                "blockquote p::before": {
+                    display: "none"
+                },
+                "blockquote p::after": {
+                    display: "none"
+                }
+            }
+        }
     };
 };
 // src/index.ts
@@ -798,8 +889,8 @@ var handler = function(options) {
             },
             // palette CSS variables
             {
-                ":root": _object_spread({}, createCustomVariableFromScale(prefix, "neutral", light), createCustomVariableFromScale(prefix, "neutral-alpha", alpha), createCustomVariableFromScale(prefix, "accent", accentLight), createCustomVariableFromScale(prefix, "accent-alpha", accentAlpha)),
-                ".dark": _object_spread({}, createCustomVariableFromScale(prefix, "neutral", dark), createCustomVariableFromScale(prefix, "neutral-alpha", darkAlpha), createCustomVariableFromScale(prefix, "accent", accentDark), createCustomVariableFromScale(prefix, "accent-alpha", accentDarkAlpha))
+                ":root": _object_spread_props(_object_spread({}, createCustomVariableFromScale(prefix, "neutral", light), createCustomVariableFromScale(prefix, "neutral-alpha", alpha), createCustomVariableFromScale(prefix, "accent", accentLight), createCustomVariableFromScale(prefix, "accent-alpha", accentAlpha)), _define_property({}, "--".concat(prefix, "-black"), light["".concat(neutral, "12")])),
+                ".dark": _object_spread_props(_object_spread({}, createCustomVariableFromScale(prefix, "neutral", dark), createCustomVariableFromScale(prefix, "neutral-alpha", darkAlpha), createCustomVariableFromScale(prefix, "accent", accentDark), createCustomVariableFromScale(prefix, "accent-alpha", accentDarkAlpha)), _define_property({}, "--".concat(prefix, "-black"), dark["".concat(neutral, "1")]))
             },
             // TODO: semantic CSS variables
             {
@@ -851,7 +942,7 @@ var handler = function(options) {
             },
             {
                 body: {
-                    "@apply selection:bg-accent-9 selection:text-accent-12 bg-background text-foreground": {}
+                    "@apply selection:bg-accent-9 selection:text-black bg-background text-foreground": {}
                 }
             }
         ]);
@@ -917,6 +1008,7 @@ var theme = function(options) {
         theme: {
             extend: {
                 colors: {
+                    black: "var(--".concat(prefix, "-black)"),
                     neutral: getRadixPaletteObject(prefix, "neutral"),
                     accent: getRadixPaletteObject(prefix, "accent")
                 },
@@ -996,7 +1088,8 @@ var theme = function(options) {
                             lineHeight: "1.5rem"
                         }
                     ]
-                }
+                },
+                typography: typography
             }
         }
     };

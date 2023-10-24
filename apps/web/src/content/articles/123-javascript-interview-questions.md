@@ -26,7 +26,7 @@ Before starting further discussion let's understand the difference between decla
 
 `var x` is a declaration because you are not defining what value it holds yet, but you are declaring its existence and the need for memory allocation.
 
-```{{javascript}}
+```javascript
 var x; // declaring x
 console.log(x); // output: undefined
 ```
@@ -35,14 +35,14 @@ console.log(x); // output: undefined
 
 A variable can be declared but not defined. When we try to access it, It will result `undefined`.
 
-```{{javascript}}
+```javascript
 var x; // Declaration
 typeof x === 'undefined'; // Will return true
 ```
 
 A variable can be neither declared nor defined. When we try to reference such variable then the result will be `not defined`.
 
-```{{javascript}}
+```javascript
 console.log(y);  // Output: ReferenceError: y is not defined
 ```
 
@@ -52,7 +52,7 @@ console.log(y);  // Output: ReferenceError: y is not defined
 
 ## Question 2. For which value of `x` the results of the following statements are not the same?
 
-```{{javascript}}
+```javascript
 //  if( x <= 100 ) {...}
 if( !(x > 100) ) {...}
 ```
@@ -72,7 +72,7 @@ This is why you need to pay attention when you deal with numeric variables. `NaN
 
 One of the drawback of declaring methods directly in JavaScript objects is that they are very memory inefficient. When you do that, a new copy of the method is created for each instance of an object. Let's see it on example:
 
-```{{javascript}}
+```javascript
 var Employee = function (name, company, salary) {
   this.name = name || "";
   this.company = company || "";
@@ -109,7 +109,7 @@ The closure has access to the variable in three scopes:
 - Variable declared in parent function scope
 - Variable declared in the global namespace
 
-```{{javascript}}
+```javascript
 var globalVar = "abc";
 
 // Parent self invoking function
@@ -136,7 +136,7 @@ var globalVar = "abc";
 
 Output of above code would be:
 
-```{{javascript}}
+```javascript
 outerArg = 7
 outerFuncVar = x
 innerArg = 5
@@ -146,7 +146,7 @@ globalVar = abc
 
 ## Question 5. Write a mul function which will work properly when invoked with following syntax.
 
-```{{javascript}}
+```javascript
 console.log(mul(2)(3)(4)); // output : 24
 console.log(mul(4)(3)(4)); // output : 48
 ```
@@ -155,7 +155,7 @@ console.log(mul(4)(3)(4)); // output : 48
 
 Below is the code followed by the explanation of how it works:
 
-```{{javascript}}
+```javascript
 function mul (x) {
   return function (y) { // anonymous function
     return function (z) { // anonymous function
@@ -179,7 +179,7 @@ In Javascript function defined inside has access to outer function variable and 
 
 For instance:
 
-```{{javascript}}
+```javascript
 var arrayList =  ['a', 'b', 'c', 'd', 'e', 'f'];
 ```
 
@@ -191,7 +191,7 @@ There are a couple of ways by which we can empty an array, So let's discuss all 
 
 #### Method 1
 
-```{{javascript}}
+```javascript
 arrayList = [];
 ```
 
@@ -199,7 +199,7 @@ The code above will set the variable `arrayList` to a new empty array. This is r
 
 For instance:
 
-```{{javascript}}
+```javascript
 var arrayList = ['a', 'b', 'c', 'd', 'e', 'f']; // Created array
 var anotherArrayList = arrayList;  // Referenced arrayList by another variable
 arrayList = []; // Empty the array
@@ -208,7 +208,7 @@ console.log(anotherArrayList); // Output ['a', 'b', 'c', 'd', 'e', 'f']
 
 #### Method 2
 
-```{{javascript}}
+```javascript
 arrayList.length = 0;
 ```
 
@@ -216,7 +216,7 @@ The code above will clear the existing array by setting its length to 0. This wa
 
 For instance:
 
-```{{javascript}}
+```javascript
 var arrayList = ['a', 'b', 'c', 'd', 'e', 'f']; // Created array
 var anotherArrayList = arrayList;  // Referenced arrayList by another variable
 arrayList.length = 0; // Empty the array by setting length to 0
@@ -225,13 +225,13 @@ console.log(anotherArrayList); // Output []
 
 #### Method 3
 
-```{{javascript}}
+```javascript
 arrayList.splice(0, arrayList.length);
 ```
 
 Above implementation will also work perfectly. This way of empty the array will also update all the references of the original array.
 
-```{{javascript}}
+```javascript
 var arrayList = ['a', 'b', 'c', 'd', 'e', 'f']; // Created array
 var anotherArrayList = arrayList;  // Referenced arrayList by another variable
 arrayList.splice(0, arrayList.length); // Empty the array by setting length to 0
@@ -240,7 +240,7 @@ console.log(anotherArrayList); // Output []
 
 #### Method 4
 
-```{{javascript}}
+```javascript
 while(arrayList.length) {
   arrayList.pop();
 }
@@ -254,13 +254,13 @@ Above implementation can also empty the array. But not recommended to use often.
 
 The best way to find whether an object is instance of a particular class or not using `toString` method from `Object.prototype`
 
-```{{javascript}}
+```javascript
 var arrayList = [1 , 2, 3];
 ```
 
 One of the best use cases of type checking of an object is when we do method overloading in JavaScript. To understand this, let's say we have a method called `greet` which can take a single string and also a list of strings. To make our `greet` method workable in both situation we need to know what kind of parameter is being passed: is it single value or list of values?
 
-```{{javascript}}
+```javascript
 function greet(param) {
   if() {
     // here have to check whether param is array or not
@@ -272,7 +272,7 @@ function greet(param) {
 
 However, in the above implementation it might not necessary to check the type of the array, we can check for single value string and put array logic code in else block, let see below code for the same.
 
-```{{javascript}}
+```javascript
  function greet(param) {
    if(typeof param === 'string') {
    }
@@ -286,7 +286,7 @@ Now it's fine we can go with the previous two implementations, but when we have 
 
 Coming back to checking the type of an object, As we mentioned that we can use `Object.prototype.toString`
 
-```{{javascript}}
+```javascript
 if(Object.prototype.toString.call(arrayList) === '[object Array]') {
   console.log('Array!');
 }
@@ -294,7 +294,7 @@ if(Object.prototype.toString.call(arrayList) === '[object Array]') {
 
 If you are using `jQuery` then you can also used jQuery `isArray` method:
 
-```{{javascript}}
+```javascript
 if($.isArray(arrayList)) {
   console.log('Array');
 } else {
@@ -306,7 +306,7 @@ FYI jQuery uses `Object.prototype.toString.call` internally to check whether an 
 
 In modern browser, you can also use:
 
-```{{javascript}}
+```javascript
 Array.isArray(arrayList);
 ```
 
@@ -314,7 +314,7 @@ Array.isArray(arrayList);
 
 ## Question 8. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var output = (function(x) {
   delete x;
   return x;
@@ -329,7 +329,7 @@ The code above will output `0` as output. `delete` operator is used to delete a 
 
 ## Question 9. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var x = 1;
 var output = (function() {
   delete x;
@@ -345,7 +345,7 @@ The code above will output `1` as output. `delete` operator is used to delete a 
 
 ## Question 10. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var x = { foo : 1};
 var output = (function() {
   delete x.foo;
@@ -361,7 +361,7 @@ The code above will output `undefined` as output. `delete` operator is used to d
 
 ## Question 11. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var Employee = {
   company: 'xyz'
 }
@@ -378,7 +378,7 @@ The code above will output `xyz` as output. Here `emp1` object got company as **
 
 ## Question 12. What is `undefined x 1` in JavaScript
 
-```{{javascript}}
+```javascript
 var trees = ["redwood", "bay", "cedar", "oak", "maple"];
 delete trees[3];
 ```
@@ -395,7 +395,7 @@ Clearly we can see that Chrome has its own way of displaying uninitialized index
 
 ## Question 13. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var trees = ["xyz", "xxxx", "test", "ryan", "apple"];
 delete trees[3];
 console.log(trees.length);
@@ -409,7 +409,7 @@ So when delete operator removes an array element that deleted element is no long
 
 ## Question 14. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var bar = true;
 console.log(bar + 0);
 console.log(bar + "xyz");
@@ -430,7 +430,7 @@ The code above will output `1, "truexyz", 2, 1` as output. Here's a general guid
 
 ## Question 15. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var z = 1, y = z = typeof y;
 console.log(y);
 ```
@@ -439,7 +439,7 @@ console.log(y);
 
 The code above will print string `"undefined"` as output. According to associativity rule operator with the same precedence are processed based on their associativity property of operator. Here associativity of the assignment operator is `Right to Left` so first `typeof y` will evaluate first which is string `"undefined"` and assigned to `z` and then `y` would be assigned the value of z. The overall sequence will look like that:
 
-```{{javascript}}
+```javascript
 var z;
 z = 1;
 var y;
@@ -449,7 +449,7 @@ y = z;
 
 ## Question 16. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 // NFE (Named Function Expression)
 var foo = function bar() { return 12; };
 typeof bar();
@@ -461,7 +461,7 @@ The output will be `Reference Error`. To fix the bug we can try to rewrite the c
 
 **Sample 1**
 
-```{{javascript}}
+```javascript
 var bar = function() { return 12; };
 typeof bar();
 ```
@@ -470,14 +470,14 @@ or
 
 **Sample 2**
 
-```{{javascript}}
+```javascript
 function bar() { return 12; };
 typeof bar();
 ```
 
 The function definition can have only one reference variable as a function name, In **sample 1** `bar` is reference variable which is pointing to `anonymous function` and in **sample 2** we have function statement and `bar` is the function name.
 
-```{{javascript}}
+```javascript
 var foo = function bar() {
   // foo is visible here
   // bar is visible here
@@ -489,13 +489,13 @@ var foo = function bar() {
 
 ## Question 17a. What is the difference between declaring a function in the formats listed below?
 
-```{{javascript}}
+```javascript
 var foo = function() {
   // Some code
 }
 ```
 
-```{{javascript}}
+```javascript
 function bar () {
   // Some code
 }
@@ -505,7 +505,7 @@ function bar () {
 
 The main difference is that function `foo` is defined at `run-time` and is called a function expression, whereas function `bar` is defined at `parse time` and is called a function statement. To understand it better, let's take a look at the code below :
 
-```{{javascript}}
+```javascript
 // Run-Time function declaration
   foo(); // Call foo function here, It will give an error
   var foo = function() {
@@ -513,7 +513,7 @@ The main difference is that function `foo` is defined at `run-time` and is calle
   };
 ```
 
-```{{javascript}}
+```javascript
 // Parse-Time function declaration
 bar(); // Call bar function here, It will not give an Error
 function bar() {
@@ -523,7 +523,7 @@ function bar() {
 
 ## Question 17b. What is the output of the following?
 
-```{{javascript}}
+```javascript
 bar();
 (function abc(){console.log('something')})();
 function bar(){console.log('bar got called')};
@@ -546,7 +546,7 @@ Since the function is called first and defined during parse time the JS engine w
 
 Let's take the following **function expression**
 
-```{{javascript}}
+```javascript
  var foo = function foo() {
      return 12;
  }
@@ -554,7 +554,7 @@ Let's take the following **function expression**
 
 In JavaScript `var`-declared variables and functions are `hoisted`. Let's take function `hoisting` first. Basically, the JavaScript interpreter looks ahead to find all the variable declaration and hoists them to the top of the function where it's declared. For example:
 
-```{{javascript}}
+```javascript
 foo(); // Here foo is still undefined
 var foo = function foo() {
   return 12;
@@ -563,7 +563,7 @@ var foo = function foo() {
 
 The code above behind the scene look something like this:
 
-```{{javascript}}
+```javascript
 var foo = undefined;
 foo(); // Here foo is undefined
 foo = function foo() {
@@ -571,7 +571,7 @@ foo = function foo() {
 }
 ```
 
-```{{javascript}}
+```javascript
 var foo = undefined;
 foo = function foo() {
   // Some code stuff
@@ -581,7 +581,7 @@ foo(); // Now foo is defined here
 
 ## Question 19. What will be the output of the following code?
 
-```{{javascript}}
+```javascript
 var salary = "1000$";
 
 (function () {
@@ -597,7 +597,7 @@ var salary = "1000$";
 
 The code above will output: `undefined, 5000$` because of hoisting. In the code presented above, you might be expecting `salary` to retain it values from outer scope until the point that `salary` was re-declared in the inner scope. But due to `hoisting` salary value was `undefined` instead. To understand it better have a look of the following code, here `salary` variable is hoisted and declared at the top in function scope. When we print its value using `console.log` the result is `undefined`. Afterwards the variable is redeclared and the new value `"5000$"` is assigned to it.
 
-```{{javascript}}
+```javascript
 var salary = "1000$";
 
 (function () {
@@ -622,14 +622,14 @@ The `typeof` operator checks if a value belongs to one of the seven basic types:
 
 `instanceof` is much more intelligent: it works on the level of prototypes. In particular, it tests to see if the right operand appears anywhere in the prototype chain of the left. `instanceof` doesn’t work with primitive types. It `instanceof` operator checks the current object and returns true if the object is of the specified type, for example:
 
-```{{javascript}}
+```javascript
 var dog = new Animal();
 dog instanceof Animal; // Output : true
 ```
 
 Here `dog instanceof Animal` is true since `dog` inherits from `Animal.prototype`
 
-```{{javascript}}
+```javascript
 var name = new String("xyz");
 name instanceof String; // Output : true
 ```
@@ -638,7 +638,7 @@ Ref Link: [http://stackoverflow.com/questions/2449254/what-is-the-instanceof-ope
 
 ## Question 21. Calculate the length of the associative array
 
-```{{javascript}}
+```javascript
 var counterArray = {
   A : 3,
   B : 4
@@ -654,7 +654,7 @@ First of all, in case of JavaScript an associative array is the same as an objec
 
 `Object` has `keys` method which can we used to calculate the length of object.
 
-```{{javascript}}
+```javascript
 Object.keys(counterArray).length; // Output 3
 ```
 
@@ -662,7 +662,7 @@ Object.keys(counterArray).length; // Output 3
 
 We can also calculate the length of object by iterating through the object and by doing a count of own property of object. This way we will ignoge the properties that came from the object's prototype chain:
 
-```{{javascript}}
+```javascript
 function getLength(object) {
   var count = 0;
   for(key in object) {
@@ -677,7 +677,7 @@ function getLength(object) {
 
 All modern browsers (including IE9+) support the [`getOwnPropertyNames`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames) method, so we can calculate the length using the following code:
 
-```{{javascript}}
+```javascript
 Object.getOwnPropertyNames(counterArray).length; // Output 3
 ```
 
@@ -685,7 +685,7 @@ Object.getOwnPropertyNames(counterArray).length; // Output 3
 
 [Underscore](https://underscorejs.org/#size) and [lodash](https://lodash.com/docs/4.17.10#size) libraries have the method `size` dedicated to calculate the object length. We don't recommend to include one of these libraries just to use the `size` method, but if it's already used in your project - why not?
 
-```{{javascript}}
+```javascript
 _.size({one: 1, two: 2, three: 3});
 => 3
 ```
@@ -696,7 +696,7 @@ If your are familiar with Object-oriented programming, More likely familiar to t
 
 functions : The simplest usages of function call:
 
-```{{javascript}}
+```javascript
 function helloWorld(name) {
   return "hello world, " + name;
 }
@@ -706,7 +706,7 @@ helloWorld("JS Geeks"); // "hello world JS Geeks"
 
 Methods in JavaScript are nothing more than object properties that are functions.
 
-```{{javascript}}
+```javascript
 var obj = {
   helloWorld : function() {
     return "hello world, " + this.name;
@@ -718,7 +718,7 @@ obj.helloWorld(); // // "hello world John Carter"
 
 Notice how `helloWorld` refer to `this` properties of obj. Here it's clear or you might have already understood that `this` gets bound to `obj`. But the interesting point that we can copy a reference to the same function `helloWorld` in another object and get a difference answer. Let see:
 
-```{{javascript}}
+```javascript
 var obj2 = {
   helloWorld : obj.helloWorld,
   name: 'John Doe'
@@ -730,7 +730,7 @@ You might be wonder what exactly happens in a method call here. Here we call the
 
 The third use of functions is as constructors. Like function and method, `constructors` are defined with function.
 
-```{{javascript}}
+```javascript
 function Employee(name, age) {
   this.name = name;
   this.age = age;
@@ -747,7 +747,7 @@ The primary role of the constructor function is to initialize the object.
 
 ## Question 23. What would be the output of the following code?
 
-```{{javascript}}
+```javascript
 function User(name) {
   this.name = name || "JsGeeks";
 }
@@ -765,7 +765,7 @@ Then it will be assigned to person.
 
 To better understand what's going on here, try to execute this code in console, line by line:
 
-```{{javascript}}
+```javascript
 function User(name) {
  this.name = name || "JsGeeks";
 }
@@ -791,7 +791,7 @@ As of 2017, Service Workers are not supported in IE and Safari.
 
 In JS, that difference is quite subtle. A function is a piece of code that is called by name and function itself not associated with any object and not defined inside any object. It can be passed data to operate on (i.e. parameter) and can optionally return data (the return value).
 
-```{{javascript}}
+```javascript
 // Function statement
 function myFunc() {
   // Do some stuff;
@@ -805,7 +805,7 @@ Here myFunc() function call is not associated with object hence not invoked thro
 
 A function can take a form of immediately invoked function expression (IIFE):
 
-```{{javascript}}
+```javascript
 
 // Anonymous Self-invoking Function
 (function() {
@@ -815,7 +815,7 @@ A function can take a form of immediately invoked function expression (IIFE):
 
 Finally there are also arrow functions:
 
-```{{javascript}}
+```javascript
 const myFunc = arg => {
     console.log("hello", arg)
 }
@@ -827,7 +827,7 @@ Here are some examples of methods:
 
 ##### Example 1
 
-```{{javascript}}
+```javascript
 var obj1 = {
   attribute: "xyz",
   myMethod: function () {  // Method
@@ -845,7 +845,7 @@ Here `obj1` is an object and `myMethod` is a method which is associated with `ob
 
 In ES6 we have classes. There the methods will look like this:
 
-```{{javascript}}
+```javascript
 class MyAwesomeClass {
   myMethod() {
     console.log("hi there");
@@ -858,7 +858,7 @@ obj1.myMethod();
 
 Understand: the method is not some kind of special type of a function, and it's not about how you declare a function. It's the way we **call** a function. Look at that:
 
-```{{javascript}}
+```javascript
 var obj1 = {
   prop1: "buddy"
 };
@@ -882,7 +882,7 @@ obj1.myMethod(); // will print "Hi there" following with obj1.
 
 IIFE a function that runs as soon as it's defined. Usually it's anonymous (doesn't have a function name), but it also can be named. Here's an example of IIFE:
 
-```{{javascript}}
+```javascript
 (function() {
   console.log("Hi, I'm IIFE!");
 })();
@@ -898,14 +898,14 @@ After the function you can see the two `()` braces, this is how we run the funct
 That's it. The rest is details.
 
 - The function inside IIFE doesn't have to be anonymous. This one will work perfectly fine and will help to detect your function in a stacktrace during debugging:
-  ```{{javascript}}
+  ```javascript
   (function myIIFEFunc() {
     console.log("Hi, I'm IIFE!");
   })();
   // outputs "Hi, I'm IIFE!"
   ```
 - It can take some parameters:
-  ```{{javascript}}
+  ```javascript
   (function myIIFEFunc(param1) {
     console.log("Hi, I'm IIFE, " + param1);
   })("Yuri");
@@ -913,7 +913,7 @@ That's it. The rest is details.
   ```
   Here there value `"Yuri"` is passed to the `param1` of the function.
 - It can return a value:
-  ```{{javascript}}
+  ```javascript
   var result = (function myIIFEFunc(param1) {
     console.log("Hi, I'm IIFE, " + param1);
     return 1;
@@ -969,7 +969,7 @@ A singleton object consists of two parts: The object itself, containing the memb
 
 As I have already stated above that singleton can be used to declare Namespace in JavaScript. NameSpacing is a large part of responsible programming in JavaScript. Because everything can be overwritten, and it is very easy to wipe out variable by mistake or a function, or even a class without even knowing it. A common example which happens frequently when you are working with another team member parallel,
 
-```{{javascript}}
+```javascript
 function findUserName(id) {
 
 }
@@ -984,7 +984,7 @@ console.log(findUserName())
 
 One of the best ways to prevent accidentally overwriting variable is to namespace your code within a singleton object.
 
-```{{javascript}}
+```javascript
 /*  Using Namespace */
 
 var MyNameSpace = {
@@ -1002,7 +1002,7 @@ console.log(MyNameSpace.findUserName());
 
 ### Singleton Design Pattern Implementation
 
-```{{javascript}}
+```javascript
 /* Lazy Instantiation skeleton for a singleton pattern */
 
 var MyNameSpace = {};
@@ -1060,7 +1060,7 @@ The singleton implemented above is easy to understand. The singleton class maint
 
 This method is useful if we want to create several similar objects. In the code sample below, we wrote the function `Employee` and used it as a constructor by calling it with the `new` operator.
 
-```{{javascript}}
+```javascript
 
   function Employee(fName, lName, age, salary){
   	this.firstName = fName;
@@ -1079,7 +1079,7 @@ This method is useful if we want to create several similar objects. In the code 
 
 Object Literal is best way to create an object and this is used frequently. Below is code sample for create employee object which contains property as well as method.
 
-```{{javascript}}
+```javascript
 var employee = {
 	name : 'Nishant',
 	salary : 245678,
@@ -1091,7 +1091,7 @@ var employee = {
 
 The code sample below is Nested Object Literal, Here address is an object inside employee object.
 
-```{{javascript}}
+```javascript
 var employee = {
 	name : 'Nishant',
 	salary : 245678,
@@ -1110,7 +1110,7 @@ var employee = {
 
 In the code below, a sample object has been created using `Object`'s constructor function.
 
-```{{javascript}}
+```javascript
 var employee = new Object(); // Created employee object using new keywords and Object()
 employee.name = 'Nishant';
 employee.getName = function(){
@@ -1130,7 +1130,7 @@ var newObject = deepClone(obj)
 
 Solution:
 
-```{{javascript}}
+```javascript
 function deepClone(object){
 	var newObject = {};
 	for(var key in object){
@@ -1146,7 +1146,7 @@ function deepClone(object){
 
 **Explanation:** We have been asked to do deep copy of object so What's basically it's mean ??. Let's understand in this way you have been given an object `personalDetail` this object contains some property which again a type of object here as you can see `address` is an object and `phoneNumber` in side an `address` is also an object. In simple term `personalDetail` is nested object(object inside object). So Here deep copy means we have to copy all the property of `personalDetail` object including nested object.
 
-```{{javascript}}
+```javascript
 var personalDetail = {
 	name : 'Nishant',
 	address : {
@@ -1166,7 +1166,7 @@ So when we do deep clone then we should copy every property (including the neste
 
 > Suppose we have given an object `person`
 
-```{{javascript}}
+```javascript
 var person = {
 	name: 'Nishant',
 	age : 24
@@ -1179,7 +1179,7 @@ Here the `person` object has a `name` and `age` property. Now we are trying to a
 
 We can use `typeof` operator to check undefined
 
-```{{javascript}}
+```javascript
 if(typeof someProperty === 'undefined'){
 	console.log('something is undefined here');
 }
@@ -1187,7 +1187,7 @@ if(typeof someProperty === 'undefined'){
 
 Now we are trying to access salary property of person object.
 
-```{{javascript}}
+```javascript
 if(typeof person.salary === 'undefined'){
 	console.log("salary is undefined here because we haven't declared");
 }
@@ -1195,7 +1195,7 @@ if(typeof person.salary === 'undefined'){
 
 ## Question 31. Write a function called `Clone` which takes an object and creates a object copy of it but not copy deep property of object.
 
-```{{javascript}}
+```javascript
    var objectLit = {foo : 'Bar'};
 	var cloneObj = Clone(obj); // Clone is the function which you have to write
 	console.log(cloneObj === Clone(objectLit)); // this should return false
@@ -1204,7 +1204,7 @@ if(typeof person.salary === 'undefined'){
 
 **solution:**
 
-```{{javascript}}
+```javascript
 function Clone(object){
   var newObject = {};
   for(var key in object){
@@ -1233,7 +1233,7 @@ Be sure that you can implement the promise, read [one of the articles on a topic
 
 Let say we have `person` object with property **name** and **age**
 
-```{{javascript}}
+```javascript
 var person = {
 	name: 'Nishant',
 	age: 24
@@ -1248,7 +1248,7 @@ So how we will check whether property is own property or inherited property.
 
 Method 1: We can use `in` operator on objet to check own property or inherited property.
 
-```{{javascript}}
+```javascript
 console.log('name' in person); // checking own property print true
 console.log('salary' in person); // checking undefined property print false
 ```
@@ -1257,13 +1257,13 @@ console.log('salary' in person); // checking undefined property print false
 
 Here
 
-```{{javascript}}
+```javascript
 console.log('toString' in person); // Will print true
 ```
 
 If we want to test property of object instance not inherited properties then we will use `hasOwnProperty` method of object instance.
 
-```{{javascript}}
+```javascript
 console.log(person.hasOwnProperty('toString')); // print false
 console.log(person.hasOwnProperty('name')); // print true
 console.log(person.hasOwnProperty('salary')); // print false
@@ -1273,7 +1273,7 @@ console.log(person.hasOwnProperty('salary')); // print false
 
 `NaN` stands for “not a number.” and it can break your table of numbers when it has an arithmetic operation that is not allowed. Here are some examples of how you can get `NaN`:
 
-```{{javascript}}
+```javascript
 Math.sqrt(-5);
 Math.log(-1);
 parseFloat("foo"); /* this is common: you get JSON from the server, convert some strings from JSON to a number and end up with NaN in your UI. */
@@ -1281,7 +1281,7 @@ parseFloat("foo"); /* this is common: you get JSON from the server, convert some
 
 `NaN` is not equal to any number, it’s not less or more than any number, also it's not equal to itself:
 
-```{{javascript}}
+```javascript
 NaN !== NaN
 NaN < 2 // false
 NaN > 2 // false
@@ -1294,7 +1294,7 @@ Further reading: [great blogpost on ariya.io](https://ariya.io/2014/05/the-curio
 
 ## Question 35. Fix the bug using ES5 only
 
-```{{javascript}}
+```javascript
 var arr = [10, 32, 65, 2];
 for (var i = 0; i < arr.length; i++) {
   setTimeout(function() {
@@ -1307,7 +1307,7 @@ For ES6, you can just replace `var i` with `let i`.
 
 For ES5, you need to create a function scope like here:
 
-```{{javascript}}
+```javascript
 var arr = [10, 32, 65, 2];
 for (var i = 0; i < arr.length; i++) {
   setTimeout(function(j) {
@@ -1324,7 +1324,7 @@ We always encounter in such situation where we need to know whether value is typ
 
 For instance : the code below perform some operation based value type
 
-```{{javascript}}
+```javascript
 function(value){
 	if("value is an array"){
 		// Then perform some operation
@@ -1340,7 +1340,7 @@ Let's discuss some way to detect an array in JavaScript.
 
 Juriy Zaytsev (Also known as kangax) proposed an elegant solution to this.
 
-```{{javascript}}
+```javascript
 	function isArray(value){
 		return Object.prototype.toString.call(value) === '[object Array]';
 	}
@@ -1352,7 +1352,7 @@ This approach is most popular way to detecting a value of type array in JavaScri
 
 Duck typing test for array type detection
 
-```{{javascript}}
+```javascript
  // Duck typing arrays
  function isArray(value){
  	return typeof value.sort === 'function';
@@ -1361,7 +1361,7 @@ Duck typing test for array type detection
 
 As we can see above isArray method will return true if value object have `sort` method of type `function`. Now assume you have created a object with sort method
 
-```{{javascript}}
+```javascript
 	var bar = {
 		sort: function(){
 			// Some code
@@ -1379,7 +1379,7 @@ ECMAScript 5 has introduced **Array.isArray()** method to detect an array type v
 
 In many JavaScript libraries you may see the code below for detecting an value of type array.
 
-```{{javascript}}
+```javascript
 function(value){
    // ECMAScript 5 feature
 	if(typeof Array.isArray === 'function'){
@@ -1396,7 +1396,7 @@ In Javascript Object are called as reference type, Any value other then primitiv
 
 Detecting object using `typeof` operator
 
-```{{javascript}}
+```javascript
 console.log(typeof {});           // object
 console.log(typeof []);           // object
 console.log(typeof new Array());  // object
@@ -1411,14 +1411,14 @@ The best way to detect an object of specific reference type using `instanceof` o
 
 > Syntax : **value** instanceof **constructor**
 
-```{{javascript}}
+```javascript
 //Detecting an array
 if(value instanceof Array){
 	console.log("value is type of array");
 }
 ```
 
-```{{javascript}}
+```javascript
 // Employee constructor function
 function Employee(name){
 	this.name = name; // Public property
@@ -1431,7 +1431,7 @@ console.log(emp1 instanceof Employee); // true
 
 `instanceof` not only check the constructor which is used to create an object but also check it's prototype chain see below example.
 
-```{{javascript}}
+```javascript
 console.log(emp1 instanceof Object); // true
 ```
 
@@ -1441,7 +1441,7 @@ The ECMAScript 5 **Object.create()** method is the easiest way for one object to
 
 **For instance:**
 
-```{{javascript}}
+```javascript
 var employee = {
   name: 'Nishant',
   displayName: function () {
@@ -1457,7 +1457,7 @@ In the example above, we create a new object `emp1` that inherits from `employee
 
 **For instance:** Defining `displayName()` method on `emp1` will not automatically override the employee `displayName`.
 
-```{{javascript}}
+```javascript
 emp1.displayName = function() {
 	console.log('xyz-Anonymous');
 };
@@ -1470,7 +1470,7 @@ In addition to this **`Object.create(`)** method also allows to specify a second
 
 **For example**
 
-```{{javascript}}
+```javascript
 var emp1 = Object.create(employee, {
 	name: {
 		value: "John"
@@ -1489,7 +1489,7 @@ Object created in this manner give you full control over newly created object. Y
 
 Let say we have `Person` class which has name, age, salary properties and **incrementSalary()** method.
 
-```{{javascript}}
+```javascript
 function Person(name, age, salary) {
   this.name = name;
   this.age = age;
@@ -1502,7 +1502,7 @@ function Person(name, age, salary) {
 
 Now we wish to create Employee class which contains all the properties of Person class and wanted to add some additional properties into Employee class.
 
-```{{javascript}}
+```javascript
 function Employee(company){
 	this.company = company;
 }
@@ -1513,7 +1513,7 @@ Employee.prototype = new Person("Nishant", 24,5000);
 
 In the example above, **Employee** type inherits from **Person**. It does so by assigning a new instance of `Person` to `Employee` prototype. After that, every instance of `Employee` inherits its properties and methods from `Person`.
 
-```{{javascript}}
+```javascript
 //Prototypal Inheritance
 Employee.prototype = new Person("Nishant", 24,5000);
 
@@ -1525,7 +1525,7 @@ console.log(emp1 instanceof Employee); // true
 
 Let's understand Constructor inheritance
 
-```{{javascript}}
+```javascript
 //Defined Person class
 function Person(name){
 	this.name = name || "Nishant";
@@ -1541,7 +1541,7 @@ console.log(obj); // Object {name: "Nishant"}
 
 Here we saw calling **Person.call(obj)** define the name properties from `Person` to `obj`.
 
-```{{javascript}}
+```javascript
 console.log(name in obj); // true
 ```
 
@@ -1559,7 +1559,7 @@ No new properties or methods can be added to the object, but one can change the 
 
 For example:
 
-```{{javascript}}
+```javascript
 var employee = {
 	name: "Nishant"
 };
@@ -1580,7 +1580,7 @@ It is same as prevent extension, in addition to this also prevent existing prope
 
 To seal an object, we use **Object.seal()** method. you can check whether an object is sealed or not using **Object.isSealed();**
 
-```{{javascript}}
+```javascript
 var employee = {
 	name: "Nishant"
 };
@@ -1605,7 +1605,7 @@ Same as seal, In addition to this prevent existing properties methods from being
 
 To freeze an object, use Object.freeze() method. We can also determine whether an object is frozen using Object.isFrozen();
 
-```{{javascript}}
+```javascript
 var employee = {
 	name: "Nishant"
 };
@@ -1634,7 +1634,7 @@ If you are decided to prevent modification, sealed, freeze the object then use i
 
 For example:
 
-```{{javascript}}
+```javascript
 "use strict";
 
 var employee = {
@@ -1665,7 +1665,7 @@ Logging error message or some informative message is always required when you de
 
 A general way to do this keep adding your app name in every console.log message like
 
-```{{javascript}}
+```javascript
 console.log('your app name' + 'some error message');
 ```
 
@@ -1673,7 +1673,7 @@ But doing in this way you have to write your app name everytime when you log mes
 
 There are some best way we can achieve this
 
-```{{javascript}}
+```javascript
 function appLog() {
   var args = Array.prototype.slice.call(arguments);
   args.unshift('your app name');
@@ -1688,7 +1688,7 @@ appLog("Some error message");
 
 For example: We can create string using string literal and using String constructor function.
 
-```{{javascript}}
+```javascript
  // using string literal
  var ltrlStr = "Hi I am string literal";
  // using String constructor function
@@ -1697,7 +1697,7 @@ For example: We can create string using string literal and using String construc
 
 We can use typeof operator to test string literal and instanceof operator to test String object.
 
-```{{javascript}}
+```javascript
  function isString(str) {
  	return typeof(str) == 'string' || str instanceof String;
  }
@@ -1716,7 +1716,7 @@ Anonymous functions basically used in following scenario.
 
    Let's take the example of setTimeout function
 
-   ```{{javascript}}
+   ```javascript
    setTimeout(function(){
    	alert("Hello");
    },1000);
@@ -1736,7 +1736,7 @@ Anonymous functions basically used in following scenario.
 
    Add Event Listener
 
-   ```{{javascript}}
+   ```javascript
    var btn = document.getElementById('myBtn');
    btn.addEventListener('click', function () {
      alert('button clicked');
@@ -1791,7 +1791,7 @@ Let's understand the code below by which we achieved setting default parameter v
 
 **Method 1: Setting default parameter value**
 
-```{{javascript}}
+```javascript
 function sentEmail(configuration, provider) {
   // Set default value if user has not passed value for provider
   provider = typeof provider !== 'undefined' ? provider : 'Gmail'
@@ -1812,7 +1812,7 @@ sentEmail({
 
 **Method 2: Setting default parameter value**
 
-```{{javascript}}
+```javascript
 function sentEmail(configuration, provider) {
   // Set default value if user has not passed value for provider
   provider = provider || 'Gmail'
@@ -1835,7 +1835,7 @@ sentEmail({
 
 Let say you have two objects
 
-```{{javascript}}
+```javascript
 var person = {
 	name : 'John',
 	age  : 24
@@ -1850,7 +1850,7 @@ var address = {
 
 Write merge function which will take two object and add all the own property of second object into first object.
 
-```{{javascript}}
+```javascript
 merge(person , address);
 
 /* Now person should have 5 properties
@@ -1859,13 +1859,13 @@ name , age , addressLine1 , addressLine2 , city */
 
 **Method 1: Using ES6, Object.assign method**
 
-```{{javascript}}
+```javascript
 const merge = (toObj, fromObj) => Object.assign(toObj, fromObj);
 ```
 
 **Method 2: Without using built-in function**
 
-```{{javascript}}
+```javascript
 function merge(toObj, fromObj) {
   // Make sure both of the parameter is an object
   if (typeof toObj === 'object' && typeof fromObj === 'object') {
@@ -1888,7 +1888,7 @@ Object can have properties that don't show up when you iterate through object us
 
 Let say we have following object
 
-```{{javascript}}
+```javascript
 var person = {
 	name: 'John'
 };
@@ -1902,7 +1902,7 @@ As we know that person object properties `name`, `salary` ,`country` are enumera
 
 To create a non-enumerable property we have to use **Object.defineProperty()**. This is a special method for creating non-enumerable property in JavaScript.
 
-```{{javascript}}
+```javascript
 var person = {
 	name: 'John'
 };
@@ -1922,7 +1922,7 @@ In the example above `phoneNo` property didn't show up because we made it non-en
 
 Now let's try to change value of `phoneNo`
 
-```{{javascript}}
+```javascript
 person.phoneNo = '7777777777';
 ```
 
@@ -1938,7 +1938,7 @@ Function binding falls in advance JavaScript category and this is very popular t
 
 Let's consider the following example:
 
-```{{javascript}}
+```javascript
 var clickHandler = {
 	message: 'click event handler',
 	handleClick: function(event) {
@@ -1957,7 +1957,7 @@ We have assigned handleClick method to a DOM button, which will be executed in r
 
 The problem of displaying `undefined` is because of the execution context of clickHandler.handleClick method is not being saved hence `this` pointing to button `btn` object. We can fix this issue using bind method.
 
-```{{javascript}}
+```javascript
 var clickHandler = {
 	message: 'click event handler',
 	handleClick: function(event) {
@@ -1982,7 +1982,7 @@ while strings, booleans and numbers are passed by value.
 
 ### 1. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var strA = "hi there";
 var strB = strA;
 strB="bye there!";
@@ -1994,7 +1994,7 @@ passed by value, that is, copied.
 
 ### 2. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var objA = {prop1: 42};
 var objB = objA;
 objB.prop1 = 90;
@@ -2006,7 +2006,7 @@ passed by reference, that is, `objA` and `objB` point to the same object in memo
 
 ### 3. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var objA = {prop1: 42};
 var objB = objA;
 objB = {};
@@ -2023,7 +2023,7 @@ This doesn't affect where `objA` variable references to.
 
 ### 4. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var arrA = [0,1,2,3,4,5];
 var arrB = arrA;
 arrB[0]=42;
@@ -2038,7 +2038,7 @@ element of the `arrB` will also modify `arrA`: it's the same array in the memory
 
 ### 5. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var arrA = [0,1,2,3,4,5];
 var arrB = arrA.slice();
 arrB[0]=42;
@@ -2052,7 +2052,7 @@ The `slice` function copies all the elements of the array returning the new arra
 
 ### 5. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var arrA = [{prop1: "value of array A!!"},  {someProp: "also value of array A!"}, 3,4,5];
 var arrB = arrA;
 arrB[0].prop1=42;
@@ -2066,7 +2066,7 @@ Arrays are object in JS, so both varaibles arrA and arrB point to the same array
 
 ### 6. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var arrA = [{prop1: "value of array A!!"}, {someProp: "also value of array A!"},3,4,5];
 var arrB = arrA.slice();
 arrB[0].prop1=42;
@@ -2079,7 +2079,7 @@ The output will be `[{prop1: 42},  {someProp: "also value of array A!"}, 3,4,5]`
 The `slice` function copies all the elements of the array returning the new array. However,
 it doesn't do deep copying. Instead it does shallow copying. You can imagine slice implemented like this:
 
-```{{javascript}}
+```javascript
 function slice(arr) {
    var result = [];
    for (i = 0; i< arr.length; i++) {
@@ -2111,7 +2111,7 @@ Answer: 4) ReferenceError: employeeId is not defined
 
 ### 2. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 console.log(employeeId);
 var employeeId = '19000';
 ```
@@ -2125,7 +2125,7 @@ Answer: 2) undefined
 
 ### 3. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var employeeId = '1234abe';
 (function(){
 	console.log(employeeId);
@@ -2142,7 +2142,7 @@ Answer: 2) undefined
 
 ### 4. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var employeeId = '1234abe';
 (function() {
 	console.log(employeeId);
@@ -2162,7 +2162,7 @@ Answer: 2) undefined
 
 ### 5. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function() {
 	console.log(typeof displayFunc);
 	var displayFunc = function(){
@@ -2180,7 +2180,7 @@ Answer: 1) undefined
 
 ### 6. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var employeeId = 'abc123';
 function foo(){
 	employeeId = '123bcd';
@@ -2199,7 +2199,7 @@ Answer: 2) '123bcd'
 
 ### 7. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var employeeId = 'abc123';
 
 function foo() {
@@ -2221,7 +2221,7 @@ Answer: 3) 'abc123'
 
 ### 8. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 var employeeId = 'abc123';
 
 function foo() {
@@ -2244,7 +2244,7 @@ Answer: 2) 'function'
 
 ### 9. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 function foo() {
 	employeeId();
 	var product = 'Car';
@@ -2266,7 +2266,7 @@ Answer: 1) undefined
 
 ### 10. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function foo() {
 	bar();
 
@@ -2292,7 +2292,7 @@ Answer: 3) function function
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	'use strict';
 
@@ -2320,7 +2320,7 @@ Answer: 3) ["name", "salary", "country", "phoneNo"]
 
 ### 2. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	'use strict';
 
@@ -2348,7 +2348,7 @@ Answer: 4) ["name", "salary", "country"]
 
 ### 3. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = {
 		foo: 'foo',
@@ -2372,7 +2372,7 @@ Answer: 2) false false
 
 ### 4. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = new Object({foo: "foo"});
 	var objB = new Object({foo: "foo"});
@@ -2390,7 +2390,7 @@ Answer: 2) false false
 
 ### 5. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = Object.create({
 		foo: 'foo'
@@ -2412,7 +2412,7 @@ Answer: 2) false false
 
 ### 6. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = Object.create({
 		foo: 'foo'
@@ -2432,7 +2432,7 @@ Answer: 2) false false
 
 ### 7. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = Object.create({
 		foo: 'foo'
@@ -2452,7 +2452,7 @@ Answer: 4) true true
 
 ### 8. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = Object.create({
 		foo: 'foo'
@@ -2474,7 +2474,7 @@ Answer: 3) true true true true
 
 ### 9. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = Object.create({
 		foo: 'foo'
@@ -2495,7 +2495,7 @@ Answer: 2) bar bar
 
 ### 10. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = Object.create({
 		foo: 'foo'
@@ -2518,7 +2518,7 @@ Answer: 3) foo foo
 
 ### 11. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var objA = {
 		foo: 'foo'
@@ -2543,7 +2543,7 @@ Answer: 2) undefined undefined
 
 ### 1. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function() {
 	var array = new Array('100');
 	console.log(array);
@@ -2560,7 +2560,7 @@ Answer: 3) ["100"] 1
 
 ### 2. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function() {
 	var array1 = [];
 	var array2 = new Array(100);
@@ -2581,7 +2581,7 @@ Answer: 1) [] [] [Array[5]] 1
 
 ### 3. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function () {
   var array = new Array('a', 'b', 'c', 'd', 'e');
   array[10] = 'f';
@@ -2599,7 +2599,7 @@ Answer: 1) 11
 
 ### 4. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var animal = ['cow','horse'];
 		animal.push('cat');
@@ -2617,7 +2617,7 @@ Answer: 3) 6
 
 ### 5. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var animal = ['cow','horse'];
 		animal.push('cat');
@@ -2635,7 +2635,7 @@ Answer: 1) [ 'dog', 'rat', 'goat', 'cow', 'horse', 'cat' ]
 
 ### 6. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var array = [1,2,3,4,5];
 	console.log(array.indexOf(2));
@@ -2654,7 +2654,7 @@ Answer: 1) 1 -1 -1 4
 
 ### 7. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var array = [1,2,3,4,5,1,2,3,4,5,6];
 	console.log(array.indexOf(2));
@@ -2672,7 +2672,7 @@ Answer: 2) 1 6 -1
 
 ### 8. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var numbers = [2,3,4,8,9,11,13,12,16];
 	var even = numbers.filter(function(element, index){
@@ -2697,7 +2697,7 @@ Answer: 3) [ 2, 4, 8, 12, 16 ] true
 
 ### 9. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var containers = [2,0,false,"", '12', true];
 	var containers = containers.filter(Boolean);
@@ -2735,7 +2735,7 @@ Answer: 1) [ 2, '12', true ]
 
 ### 10. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var list = ['foo','bar','john','ritz'];
 	    console.log(list.slice(1));
@@ -2775,7 +2775,7 @@ Answer: 1) [ 'bar', 'john', 'ritz' ]
 
 ### 11. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var list = ['foo','bar','john'];
 	    console.log(list.splice(1));
@@ -2793,7 +2793,7 @@ Answer: 1. [ 'bar', 'john' ] [] [ 'foo' ]
 
 ### 12. What would be the output of following code?
 
-```{{javascript}}
+```javascript
 (function(){
 	var arrayNumb = [2, 8, 15, 16, 23, 42];
 	arrayNumb.sort();
@@ -2812,7 +2812,7 @@ Answer: 3. [ 15, 16, 2, 23, 42, 8 ]
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function funcA(){
 	console.log("funcA ", this);
 	(function innerFuncA1(){
@@ -2837,7 +2837,7 @@ Answer: 1)
 
 ### 2. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var obj = {
 	message: "Hello",
 	innerMessage: !(function() {
@@ -2857,7 +2857,7 @@ Answer: 4) undefined true
 
 ### 3. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var obj = {
 	message: "Hello",
 	innerMessage: function() {
@@ -2877,7 +2877,7 @@ Answer: 1) Hello
 
 ### 4. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var obj = {
   message: 'Hello',
   innerMessage: function () {
@@ -2898,7 +2898,7 @@ Answer: 3) undefined
 
 ### 5. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var obj = {
   message: 'Hello',
   innerMessage: function () {
@@ -2920,7 +2920,7 @@ Answer: 2) 'Hello'
 
 ### 6. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function myFunc(){
 	console.log(this.message);
 }
@@ -2938,7 +2938,7 @@ Answer: 3) undefined
 
 ### 7. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function myFunc(){
 	console.log(myFunc.message);
 }
@@ -2956,7 +2956,7 @@ Answer: 2) 'Hi John'
 
 ### 8. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function myFunc() {
   myFunc.message = 'Hi John';
   console.log(myFunc.message);
@@ -2973,7 +2973,7 @@ Answer: 2) 'Hi John'
 
 ### 9. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function myFunc(param1,param2) {
   console.log(myFunc.length);
 }
@@ -2991,7 +2991,7 @@ Answer: a) 2 2 2
 
 ### 10. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function myFunc() {
   console.log(arguments.length);
 }
@@ -3011,7 +3011,7 @@ Answer: 2) 0 2 4
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function Person(name, age){
 	this.name = name || "John";
 	this.age = age || 24;
@@ -3041,7 +3041,7 @@ Answer: 1) John Person
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function passWordMngr() {
 	var password = '12345678';
 	this.userName = 'John';
@@ -3064,7 +3064,7 @@ Answer: 3) 12345678 undefined
 
 ### 2. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var employeeId = 'aq123';
 function Employee() {
   this.employeeId = 'bq1uy';
@@ -3081,7 +3081,7 @@ Answer: 4) undefined
 
 ### 3. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var employeeId = 'aq123';
 
 function Employee() {
@@ -3103,7 +3103,7 @@ Answer: 2) bq1uy 1BJKSJ bq1uy
 
 ### 4. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 var employeeId = 'aq123';
 (function Employee() {
 	try {
@@ -3126,7 +3126,7 @@ Answer: 1) foo123 aq123
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var greet = 'Hello World';
 	var toGreet = [].filter.call(greet, function(element, index) {
@@ -3145,7 +3145,7 @@ Answer: 4) [ 'W', 'o', 'r', 'l', 'd' ]
 
 ### 2. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var fooAccount = {
 		name: 'John',
@@ -3176,7 +3176,7 @@ Answer: 1) Total amount left in account: 5600 Total amount left in account: 5300
 
 ### 3. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var fooAccount = {
 		name: 'John',
@@ -3208,7 +3208,7 @@ Answer: 1) 5600 5300 5100
 
 ### 4. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function() {
 	var fooAccount = {
 		name: 'John',
@@ -3240,7 +3240,7 @@ Answer: 2) 3600 3300 3100
 
 ### 5. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function greetNewCustomer() {
 	console.log('Hello ' + this.name);
 }.bind({
@@ -3261,7 +3261,7 @@ Answer: 1) Hello John
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function getDataFromServer(apiUrl){
     var name = "John";
 	return {
@@ -3286,7 +3286,7 @@ Answer: 1) John
 
 ### 2. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function(){
 	var arrayNumb = [2, 8, 15, 16, 23, 42];
 	Array.prototype.sort = function(a,b){
@@ -3334,7 +3334,7 @@ Answer: 1) [ 2, 8, 15, 16, 23, 42 ]
 
 ### 1. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 (function(){
 	function sayHello(){
 		var name = "Hi John";
@@ -3356,7 +3356,7 @@ Answer: 4) Uncaught TypeError: Cannot read property 'fullName' of undefined
 
 ### 2. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function getNumber(){
 	return (2,4,5);
 }
@@ -3374,7 +3374,7 @@ Answer: 1) 5
 
 ### 3. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function getNumber(){
 	return;
 }
@@ -3392,7 +3392,7 @@ Answer: 2) undefined
 
 ### 4\*\*. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function mul(x){
 	return function(y){
 		return [x*y, function(z){
@@ -3414,7 +3414,7 @@ Answer: 1) 6, 10
 
 ### 5\*\*. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function mul(x) {
 	return function(y) {
 		return {
@@ -3438,7 +3438,7 @@ Answer: 1) 6, 10
 
 ### 6. What would be the output of following code ?
 
-```{{javascript}}
+```javascript
 function mul(x) {
 	return function(y) {
 		return function(z) {

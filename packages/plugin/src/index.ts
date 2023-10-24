@@ -9,6 +9,7 @@ import {
   HandlerParamType,
   ThemeParamType
 } from "./utils";
+import {typography} from "./tokens/typography";
 const handler: HandlerParamType = (options) => {
   const { prefix, scaling, radius, neutral, accent } = getPluginOptions(options);
   return function ({ addBase, addUtilities }) {
@@ -37,12 +38,14 @@ const handler: HandlerParamType = (options) => {
           ...createCustomVariableFromScale(prefix, "neutral-alpha", alpha),
           ...createCustomVariableFromScale(prefix, "accent", accentLight),
           ...createCustomVariableFromScale(prefix, "accent-alpha", accentAlpha),
+          [`--${prefix}-black`]: light[`${neutral}12`]
         },
         ".dark": {
           ...createCustomVariableFromScale(prefix, "neutral", dark),
           ...createCustomVariableFromScale(prefix, "neutral-alpha", darkAlpha),
           ...createCustomVariableFromScale(prefix, "accent", accentDark),
           ...createCustomVariableFromScale(prefix, "accent-alpha", accentDarkAlpha),
+          [`--${prefix}-black`]: dark[`${neutral}1`]
         },
       },
       // TODO: semantic CSS variables
@@ -89,7 +92,7 @@ const handler: HandlerParamType = (options) => {
       },
       {
         body: {
-          "@apply selection:bg-accent-9 selection:text-accent-12 bg-background text-foreground": {},
+          "@apply selection:bg-accent-9 selection:text-black bg-background text-foreground": {},
         },
       },
     ]);
@@ -155,6 +158,7 @@ const theme: ThemeParamType = (options) => {
     theme: {
       extend: {
         colors: {
+          black: `var(--${prefix}-black)`,
           neutral: getRadixPaletteObject(prefix, "neutral"),
           accent: getRadixPaletteObject(prefix, "accent"),
           //  semantic classes
@@ -232,6 +236,7 @@ const theme: ThemeParamType = (options) => {
             },
           ],
         },
+        typography,
       },
     },
   }
